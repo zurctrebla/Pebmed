@@ -78,17 +78,23 @@ class PatientTest extends TestCase
      *
      * @return void
      */
-    // public function test_create_module_by_course()
-    // {
-    //     $user = User::factory()->create();
+    public function test_create_patient_by_user()
+    {
+        $user = User::factory()->create();
 
-    //     $response = $this->postJson("/users/{$user->uuid}/patients", [
-    //         'user' => $user->uuid,
-    //         'name' => 'Patient',
-    //     ]);
+        $response = $this->postJson("/users/{$user->uuid}/patients", [
+            'user' => $user->uuid,
+            'name' => 'Albert',
+            'phone' => '71991116060',
+            'email' => 'albertcruz@terra.com.br',
+            'dob' => '1978-06-30',
+            'gender' => 'Masculino',
+            'height' => 1.81,
+            'weight' => 92
+        ]);
 
-    //     $response->assertStatus(201);
-    // }
+        $response->assertStatus(201);
+    }
 
     /**
      * A basic feature test example.

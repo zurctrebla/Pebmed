@@ -16,11 +16,6 @@ class PatientFactory extends Factory
      */
     public function definition()
     {
-        $arrayValues = ['Masculino', 'Feminino', 'Outros'];
-
-
-
-
         return [
             'user_id' => User::factory(),
             'name' => $this->faker->name(),

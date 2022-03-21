@@ -15,8 +15,9 @@ class NoteFactory extends Factory
     public function definition()
     {
         return [
-            'scheduling' => Scheduling::factory(),
+            'scheduling_id' => Scheduling::factory(),
             'note' => $this->faker->sentence(100),
         ];
+
     }
 }
