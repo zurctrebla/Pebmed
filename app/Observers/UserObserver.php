@@ -16,17 +16,19 @@ class UserObserver
     public function creating(User $user)
     {
         $user->uuid = Str::uuid();
+        $user->password = bcrypt($user->password);
     }
 
     /**
-     * Handle the User "updated" event.
+     * Handle the User "updating" event.
      *
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function updated(User $user)
+    public function updating(User $user)
     {
-        //
+        if ($user->password)
+            $user->password = bcrypt($user->password);
     }
 
     /**
