@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUpdateUser extends FormRequest
+class StoreUpdatePatient extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,17 @@ class StoreUpdateUser extends FormRequest
      */
     public function rules()
     {
-        $uuid = $this->user ?? '';
+        $uuid = $this->patient ?? '';
 
         $rules = [
             'name' => ['required', 'string', 'min:3', 'max:100'],
-            'password' => ['required', 'min:8', 'max:16'],
+            'phone' => ['required', 'string', 'min:11', 'max:11'],
             'email' => ['required', 'email', 'max:255', "unique:users,email,{$uuid},uuid"],
+
+            'dob' => ['required', 'date'],
+            'gender' => ['required', 'string'],
+            'height' => ['required',],
+            'weight' => ['required',],
         ];
 
         if ($this->method() == 'PUT') {
