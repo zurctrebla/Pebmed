@@ -48,21 +48,25 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user, $identify)
     {
-        //
+        $user = $this->patientService->getPatientByUser($user, $identify);
+
+        return new PatientResource($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreUpdatePatient $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdatePatient $request, $user, $identify)
     {
-        //
+        $this->patientService->updatePatient($identify, $request->validated());
+
+        return response()->json(['message' => 'updated']);
     }
 
     /**
@@ -71,8 +75,10 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($user, $identify)
     {
-        //
+        $this->patientService->deletePatient($identify);
+
+        return response()->json([], 204);
     }
 }

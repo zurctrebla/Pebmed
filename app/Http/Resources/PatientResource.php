@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PatientResource extends JsonResource
@@ -14,6 +15,16 @@ class PatientResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'identify' => $this->uuid,
+            'patient' => $this->name,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'birth' => $this->dob,
+            'gender' => $this->gender,
+            'height' => $this->height,
+            'weight' => $this->weight,
+            'created_at' => Carbon::make($this->created_at)->format('d/m/Y'),
+        ];
     }
 }

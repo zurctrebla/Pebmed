@@ -21,46 +21,41 @@ class PatientRepository
                         ->get();
     }
 
-    // public function createNewModule(int $userId, array $data)
-    // {
-    //     $data['course_id'] = $userId;
+    public function createNewPatient(int $userId, array $data)
+    {
+        $data['user_id'] = $userId;
 
-    //     return $this->entity->create($data);
-    // }
+        return $this->entity->create($data);
+    }
 
-    // public function getModuleByCourse(int $userId, string $identify)
-    // {
-    //     return $this->entity
-    //                 ->where('course_id', $userId)
-    //                 ->where('uuid', $identify)
-    //                 ->firstOrfail();
-    // }
+    public function getPatientByUser(int $userId, string $identify)
+    {
+        return $this->entity
+                    ->where('user_id', $userId)
+                    ->where('uuid', $identify)
+                    ->firstOrfail();
+    }
 
-    // public function getModuleByUuid(string $identify)
-    // {
-    //     return $this->entity
-    //                 ->where('uuid', $identify)
-    //                 ->firstOrfail();
-    // }
+    public function getPatientByUuid(string $identify)
+    {
+        return $this->entity
+                    ->where('uuid', $identify)
+                    ->firstOrfail();
+    }
 
-    // public function updateModuleByUuid(int $userId, string $identify, array $data)
-    // {
-    //     $module = $this->getModuleByUuid($identify);
+    public function updatePatientByUuid(int $userId, string $identify, array $data)
+    {
+        $patient = $this->getPatientByUuid($identify);
 
-    //     Cache::forget('courses');
+        $data['user_id'] = $userId;
 
-    //     $data['course_id'] = $userId;
+        return $patient->update($data);
+    }
 
+    public function deletePatientByUuid(string $identify)
+    {
+        $patient = $this->getPatientByUuid($identify);
 
-    //     return $module->update($data);
-    // }
-
-    // public function deleteModuleByUuid(string $identify)
-    // {
-    //     $module = $this->getModuleByUuid($identify);
-
-    //     Cache::forget('courses');
-
-    //     return $module->delete();
-    // }
+        return $patient->delete();
+    }
 }

@@ -33,22 +33,22 @@ class PatientService
         return $this->patientRepository->createNewPatient($user->id, $data);
     }
 
-    // public function getModuleByCourse(string $course, string $identify)
-    // {
-    //     $course = $this->userRepository->getCourseByUuid($course);
+    public function getPatientByUser(string $user, string $identify)
+    {
+        $user = $this->userRepository->getUserByUuid($user);
 
-    //     return $this->patientRepository->getModuleByCourse($course->id, $identify);
-    // }
+        return $this->patientRepository->getPatientByUser($user->id, $identify);
+    }
 
-    // public function updateModule(string $identify, array $data)
-    // {
-    //     $course = $this->userRepository->getCourseByUuid($data['course']);
+    public function updatePatient(string $identify, array $data)
+    {
+        $user = $this->userRepository->getUserByUuid($data['user']);
 
-    //     return $this->patientRepository->updateModuleByUuid($course->id, $identify, $data);
-    // }
+        return $this->patientRepository->updatePatientByUuid($user->id, $identify, $data);
+    }
 
-    // public function deleteModule(string $identify)
-    // {
-    //     return $this->patientRepository->deleteModuleByUuid($identify);
-    // }
+    public function deletePatient(string $identify)
+    {
+        return $this->patientRepository->deletePatientByUuid($identify);
+    }
 }
