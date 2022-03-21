@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Models\{
     Patient,
+    Scheduling,
     User
 };
 use App\Observers\PatientObserve;
+use App\Observers\SchedulingObserver;
 use App\Observers\UserObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
     {
         User::observe(UserObserver::class);
         Patient::observe(PatientObserve::class);
+        Scheduling::observe(SchedulingObserver::class);
     }
 }
