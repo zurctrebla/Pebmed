@@ -19,7 +19,7 @@ class SchedulingResource extends JsonResource
         return [
             'identify' => $this->uuid,
             'patient' => $this->patient->name,
-            'data e horario' => Carbon::make($this->scheduling)->format('d/m/Y'),
+            'date and hour ' => Carbon::make($this->scheduling)->format('d/m/Y H:i:s'),
         ];
     }
 }
