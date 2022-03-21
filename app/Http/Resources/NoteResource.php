@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SchedulingResource extends JsonResource
+class NoteResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +17,9 @@ class SchedulingResource extends JsonResource
     {
         return [
             'identify' => $this->uuid,
-            'patient' => $this->patient->name,
-            'date and hour ' => Carbon::make($this->scheduling)->format('d/m/Y H:i:s'),
+            'scheduling' => $this->scheduling->scheduling,
+            'obs' => $this->note,
+            'created_at' => Carbon::make($this->created_at)->format('d/m/Y'),
         ];
     }
 }
