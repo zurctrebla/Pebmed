@@ -21,11 +21,6 @@ use Illuminate\Routing\Controller as BaseController;
 *      description="Pebmed API"
 * )
 *
-*
-* @OA\Tag(
-*     name="Projects",
-*     description="API Endpoints of Projects"
-* )
 */
 class Controller extends BaseController
 {
